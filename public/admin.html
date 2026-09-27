@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Painel NEXO</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="loginBox" class="wrap" style="max-width:380px;padding-top:80px">
+    <h1>Painel</h1>
+    <p class="note">Acesso interno. O proprietário cria os demais logins.</p>
+    <label>E-mail</label>
+    <input id="email" value="dono@nexo.local" />
+    <label>Senha</label>
+    <input id="pass" type="password" value="nexo2026" />
+    <p class="note" id="loginErr"></p>
+    <button class="btn" id="doLogin" style="margin-top:12px">Entrar</button>
+  </div>
+  <div class="admin" id="app" style="display:none">
+    <aside class="side">
+      <div class="brand">NEXO</div>
+      <p class="note" id="who"></p>
+      <button data-tab="leads" class="on">Solicitações</button>
+      <button data-tab="ia">Fila da IA</button>
+      <button data-tab="plans">Planos</button>
+      <button data-tab="know">Base da IA</button>
+      <button data-tab="users">Acessos</button>
+      <button data-tab="settings">Configuração</button>
+      <button id="out">Sair</button>
+    </aside>
+    <main class="main">
+      <section id="tab-leads"></section>
+      <section id="tab-ia" hidden></section>
+      <section id="tab-plans" hidden></section>
+      <section id="tab-know" hidden></section>
+      <section id="tab-users" hidden></section>
+      <section id="tab-settings" hidden></section>
+    </main>
+  </div>
+  <script src="/admin.js"></script>
+</body>
+</html>

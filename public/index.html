@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEXO — Fibra, móvel e TV</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#" id="brand">NEXO</a>
+    <nav class="nav-mini">
+      <a href="#planos">Planos</a>
+      <a href="#como">Como funciona</a>
+      <a href="/admin.html">Painel</a>
+    </nav>
+  </header>
+  <section class="hero-screen">
+    <canvas id="field"></canvas>
+    <div class="hero-copy">
+      <p class="kicker">Fibra · Móvel · TV</p>
+      <h1 id="tagline">Sinal limpo. Pedido certo. Sem checkout neste site.</h1>
+      <p>Você escolhe o plano, envia os documentos e a operadora assume o contrato. Aqui não passa cartão. Aqui não inventamos cobertura.</p>
+    </div>
+    <div class="scroll-hint">Scroll para explorar</div>
+  </section>
+  <section class="section" id="como">
+    <p class="label">001 — Abordagem</p>
+    <h2 class="display">Três passos. Uma solicitação.</h2>
+    <p class="lede">Compare as ofertas ativas. Envie RG, comprovante e selfie. O time valida e encaminha para a operadora. Pagamento só depois da adesão dela.</p>
+  </section>
+  <section class="section" id="planos">
+    <p class="label">002 — Ofertas</p>
+    <h2 class="display">O que está no ar agora.</h2>
+    <div class="filters">
+      <input id="cep" placeholder="CEP" maxlength="9" />
+      <select id="tipo">
+        <option value="todos">Todos</option>
+        <option value="fibra">Fibra</option>
+        <option value="movel">Móvel</option>
+        <option value="combo">Combo / TV</option>
+      </select>
+      <select id="op"><option value="todas">Operadoras</option></select>
+    </div>
+    <div class="work" id="grid"></div>
+    <p class="note">Preço de vitrine. A operadora confirma no endereço. Documentos entram na solicitação.</p>
+  </section>
+  <section class="section">
+    <p class="label">003 — Pedido</p>
+    <h2 class="display">A ideia está pronta para ir?</h2>
+    <p class="lede">Abra um plano acima. A ficha pede só o que a operadora exige para analisar o caso.</p>
+  </section>
+  <div class="modal" id="modal">
+    <form class="sheet" id="leadForm">
+      <h2>Solicitar</h2>
+      <p class="note" id="planName"></p>
+      <input type="hidden" name="planId" id="planId" />
+      <label>Nome completo</label><input name="name" required />
+      <div class="row">
+        <div><label>CPF</label><input name="cpf" required /></div>
+        <div><label>WhatsApp</label><input name="phone" required /></div>
+      </div>
+      <div class="row">
+        <div><label>CEP</label><input name="cep" id="cepForm" required /></div>
+        <div><label>Número</label><input name="number" required /></div>
+      </div>
+      <label>Endereço</label><input name="address" required />
+      <label>Tipo</label>
+      <select name="person"><option value="pf">Pessoa física</option><option value="pj">Pessoa jurídica</option></select>
+      <label>CNPJ (se PJ)</label><input name="cnpj" />
+      <label>Documento com foto (RG ou CNH)</label>
+      <input type="file" name="doc_id" accept="image/*,.pdf" required />
+      <label>Comprovante de residência (até 90 dias)</label>
+      <input type="file" name="proof_address" accept="image/*,.pdf" required />
+      <label>Selfie com o documento</label>
+      <input type="file" name="selfie" accept="image/*" required />
+      <p class="note">Não pedimos cartão.</p>
+      <div style="display:flex;gap:8px;margin-top:18px">
+        <button class="btn" type="submit">Enviar solicitação</button>
+        <button class="btn ghost" type="button" id="closeModal">Fechar</button>
+      </div>
+      <p class="note" id="leadMsg"></p>
+    </form>
+  </div>
+  <div class="ia" id="ia">
+    <div class="ia-box">
+      <div class="ia-log" id="iaLog"></div>
+      <form class="ia-form" id="iaForm">
+        <input id="iaQ" placeholder="Pergunte. Se eu não souber, eu chamo o time." />
+        <button class="btn" type="submit">Enviar</button>
+      </form>
+    </div>
+    <button class="fab" id="iaToggle" type="button">IA NEXO</button>
+  </div>
+  <script src="/public.js"></script>
+</body>
+</html>
