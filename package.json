@@ -1,0 +1,9 @@
+{
+  "name": "nexo-planos",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Comparador + solicitação + IA com escalação + painel multinível",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
