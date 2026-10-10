@@ -1,0 +1,28 @@
+name: Governed historical secret audit
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan without disclosing secrets
+        run: |
+          set -euo pipefail
+          VERSION=8.24.3
+          curl -fsSL "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz" -o /tmp/gitleaks.tgz
+          tar -xzf /tmp/gitleaks.tgz -C /tmp gitleaks
+          /tmp/gitleaks git --redact --exit-code 0 --report-format json --report-path /tmp/findings.json .
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('/tmp/findings.json')
+          findings=json.loads(p.read_text()) if p.exists() and p.stat().st_size else []
+          print("FINDING_COUNT:",len(findings))
+          for f in findings:
+              print("METADATA:",json.dumps({"rule":f.get("RuleID"),"file":f.get("File"),"commit":str(f.get("Commit",""))[:12],"line":f.get("StartLine")}))
+          if findings: raise SystemExit(1)
+          PY
